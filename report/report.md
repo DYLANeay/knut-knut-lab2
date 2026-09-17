@@ -58,6 +58,6 @@ To know how much time the model saves for Knut Knut, we wrote evaluate.py. Witho
 
 With the model, we take the same trips at the same departure times, and for each one we use the predicted duration of the route the app would recommend. The average goes down to 84.8 minutes.
 
-So the model saves about 14.8 minutes per trip, which is 15%. Over the 1031 trips of the dataset, that is around 254 hours saved. Even if the drivers always took the best single route (A->C->D, 95.7 minutes on average), the model would still save about 11 minutes per trip, because no route is the fastest all day long.
+So the model saves about 14.8 minutes per trip, which is 15%. Over the 1031 trips of the dataset, that is around 254 hours saved. With an hourly rate of 250 kr, this is around 63,400 kr saved. Even if the drivers always took the best single route (A->C->D, 95.7 minutes on average), the model would still save about 11 minutes per trip, because no route is the fastest all day long.
 
 This is an estimate: we don't know how long the route the driver did not take would really have lasted, so we use the prediction of the model for it. The model is also evaluated on the same trips it was trained on.

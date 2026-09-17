@@ -32,4 +32,9 @@ with_ = with_model.mean()
 print(f"Sans le modèle : {without:.1f} min par trajet")
 print(f"Avec le modèle : {with_:.1f} min par trajet")
 print(f"Gain           : {without - with_:.1f} min par trajet ({(without - with_) / without:.0%})")
-print(f"Sur les {len(y)} trajets : {(without - with_) * len(y) / 60:.0f} heures gagnées")
+hours_saved = (without - with_) * len(y) / 60
+print(f"Sur les {len(y)} trajets : {hours_saved:.0f} heures gagnées")
+
+# Coût horaire d'un chauffeur
+HOURLY_RATE = 250  # kr
+print(f"Argent économisé : {hours_saved * HOURLY_RATE:.0f} kr (à {HOURLY_RATE} kr de l'heure)")
