@@ -31,7 +31,7 @@ import pandas as pd
 # 1. Parsing with Datetime & Feature Extraction
 # ---------------------------------------------------------
 records = []
-with open("traffic.jsonl", "r") as f:
+with open("data/traffic.jsonl", "r") as f:
     for line in f:
         if line.strip():
             records.append(json.loads(line.strip()))
@@ -140,7 +140,7 @@ print(f"[B->C->E] Fitted (3 params) — RMSE: {rmse_bce:.2f} min")
 # ---------------------------------------------------------
 # 5. Serialization via Pickle
 # ---------------------------------------------------------
-with open("traffic_models.pkl", "wb") as f:
+with open("models/traffic_models.pkl", "wb") as f:
     pickle.dump(models, f)
 
 print("All 4 models successfully serialized to traffic_models.pkl (Total: 10 parameters)")
