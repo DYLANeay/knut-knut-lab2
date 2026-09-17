@@ -41,7 +41,7 @@ Looking at the trips route by route:
 
 - the routes to E take about 98 minutes all day, so `A->C->E` is a constant;
 - the routes to D are slow in the morning and the afternoon and fast around noon, so `A->C->D`
-  is a bowl (a cosine centred on noon);
+  is a bowl (a parabola centred on 11:30);
 - the routes from B follow a sawtooth that repeats every hour: something like a ferry leaves
   around quarter past, and the waiting time for the next one is added. `B->C->E` is a constant
   plus that sawtooth, `B->C->D` is the bowl plus the sawtooth.

@@ -1,12 +1,13 @@
 # Une formule par route, calquée sur la forme réelle observée dans les données.
-# Ce fichier est importé par train.py (entraînement) et par knut_knut_app.py (prédiction).
+# Ce fichier est importé par knut_knut_app.py (prédiction), avec les mêmes formules que train.py.
+# Les notations (t, theta, y_hat) sont expliquées en haut de train.py.
 
 import numpy as np
 
 
 def predict_acd(t, theta):
-    base, amp, center, width = theta
-    return base - amp * np.cos((t - center) / width)
+    quad_w, base = theta
+    return quad_w * ((t - 11.5) ** 2) + base
 
 
 def predict_ace(t, theta):
