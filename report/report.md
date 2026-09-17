@@ -8,7 +8,9 @@ During this Handin, we worked with representing data through plotting and then g
 
 - A->C->D: Looks like an inverse bell curve or U- Shape, meaning that early in the morning and in the evening, during peak traffic hours, travel times increase significantly due to traffic.
 
-- A->C->E: Looks like a constant, meaning that whatever the start time is during the day, travel time stays about the same.
+- A->C->E: Looks like a conRoute B > C > E: Sawtooth Wave
+Equation: $f(t) = b + A \cdot \left(1.0 - ((t - s) \bmod 1.0)\right)$
+Parameters: 3 parameters ($b, A, s$)stant, meaning that whatever the start time is during the day, travel time stays about the same.
 
 - B->C->E: This is a sawtooth function, meaning that travel times can experience recurring spikes of traffic followed by sudden drops, likely because of hourly scheduling or something like a “ferry” that passes by every hour.
 
