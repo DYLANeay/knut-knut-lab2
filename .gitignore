@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+
+# environnement virtuel (uv sync)
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
