@@ -1,5 +1,6 @@
 # Une formule par route, calquée sur la forme réelle observée dans les données.
-# Ce fichier est importé par knut_knut_app.py (prédiction), avec les mêmes formules que train.py.
+# Seul endroit où les formules sont définies : importé par train.py (entraînement),
+# evaluate.py (gain) et knut_knut_app.py (prédiction).
 # Les notations (t, theta, y_hat) sont expliquées en haut de train.py.
 
 import numpy as np

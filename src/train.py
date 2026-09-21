@@ -26,6 +26,7 @@ from datetime import datetime
 import pickle
 import numpy as np
 import pandas as pd
+from routes import predict_acd, predict_ace, predict_bcd, predict_bce
 
 # ---------------------------------------------------------
 # 1. Parsing with Datetime & Feature Extraction
@@ -50,31 +51,11 @@ df["t"] = df["dep_dt"].dt.hour + df["dep_dt"].dt.minute / 60.0
 # 2. Mathematical Topologies per Route (10 Total Parameters)
 # ---------------------------------------------------------
 
-# Route A->C->D: Centered 2nd-degree parabola (2 parameters)
-# theta = [quad_w, base]
-def predict_acd(t, theta):
-    quad_w, base = theta
-    return quad_w * ((t - 11.5) ** 2) + base
-
-# Route A->C->E: Flat constant line (1 parameter)
-# theta = [const]
-def predict_ace(t, theta):
-    return np.full_like(t, theta[0])
-
-# Route B->C->D: Hourly sawtooth wave + rush-hour quadratic bowl (4 parameters)
-# theta = [base, saw_amp, shift, quad_w]
-def predict_bcd(t, theta):
-    base, saw_amp, shift, quad_w = theta
-    saw = 1.0 - ((t - shift) % 1.0)
-    curve = quad_w * ((t - 11.5) ** 2)
-    return base + saw_amp * saw + curve
-
-# Route B->C->E: Pure hourly sawtooth wave (3 parameters)
-# theta = [base, saw_amp, shift]
-def predict_bce(t, theta):
-    base, saw_amp, shift = theta
-    saw = 1.0 - ((t - shift) % 1.0)
-    return base + saw_amp * saw
+# The four formulas live in routes.py, shared with evaluate.py and the app:
+#   A->C->D : parabola centered on 11:30          theta = [quad_w, base]
+#   A->C->E : flat constant line                  theta = [const]
+#   B->C->D : hourly sawtooth + rush-hour bowl    theta = [base, saw_amp, shift, quad_w]
+#   B->C->E : pure hourly sawtooth                theta = [base, saw_amp, shift]
 
 # ---------------------------------------------------------
 # 3. Fortuna Local Search Optimizer

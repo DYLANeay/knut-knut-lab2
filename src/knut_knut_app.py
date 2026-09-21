@@ -2,6 +2,7 @@ import os
 import pickle
 import numpy as np
 from flask import Flask, request
+from routes import PREDICT
 
 # Calculate dynamic absolute paths relative to this script
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -122,26 +123,8 @@ BASE_STYLE = """
 
 
 def predict_single_road(road, t):
-    """Predict travel duration using the specific topology per route."""
-    theta = ROAD_MODELS[road]
-
-    if road == "A->C->D":
-        quad_w, base = theta
-        return quad_w * ((t - 11.5) ** 2) + base
-
-    elif road == "A->C->E":
-        return float(theta[0])
-
-    elif road == "B->C->D":
-        base, saw_amp, shift, quad_w = theta
-        saw = 1.0 - ((t - shift) % 1.0)
-        curve = quad_w * ((t - 11.5) ** 2)
-        return base + saw_amp * saw + curve
-
-    elif road == "B->C->E":
-        base, saw_amp, shift = theta
-        saw = 1.0 - ((t - shift) % 1.0)
-        return base + saw_amp * saw
+    """Predict travel duration using the specific topology per route (formulas in routes.py)."""
+    return float(PREDICT[road](np.array([t]), ROAD_MODELS[road])[0])
 
 
 def explain_delay(road, duration, best_duration, h_float):
