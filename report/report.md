@@ -10,7 +10,7 @@ During this Handin, we worked with representing data through plotting and then g
 
 - A->C->E: Looks like a constant, meaning that whatever the start time is during the day, travel time stays about the same.
 
-- B->C->E: This is a sawtooth function, meaning that travel times can experience recurring spikes of traffic followed by sudden drops, likely because of hourly scheduling or something like a “ferry” that passes by every hour.
+- B->C->E: This is a sawtooth function, meaning that at about quarter past each hour the travel time suddenly jumps up, then goes down steadily until the next jump. This is likely because of hourly scheduling or something like a “ferry” that passes by every hour: a driver who leaves just after it has to wait almost an hour for the next one.
 
 - B->C->D: Looks like an inverse bell curve mixed with sawtooth wave function, meaning it combines the rush hour congestion in the morning and evening with the spikes of the passing ferry every hour.
 
@@ -56,6 +56,6 @@ To know how much time the model saves for Knut Knut, we wrote evaluate.py. Witho
 
 With the model, we take the same trips at the same departure times, and for each one we use the predicted duration of the route the app would recommend. The average goes down to 84.8 minutes.
 
-So the model saves about 14.8 minutes per trip, which is 15%. Over the 1031 trips of the dataset, that is around 254 hours saved. With an hourly rate of 250 kr, this is around 63,400 kr saved. Even if the drivers always took the best single route (A->C->D, 95.7 minutes on average), the model would still save about 11 minutes per trip, because no route is the fastest all day long.
+So the model saves about 14.8 minutes per trip, which is 15%. Over the 1031 trips of the dataset, that is around 254 hours saved. With an hourly rate of 250 kr, this is around 63,400 kr saved. Even if the drivers always took the best single route (A->C->D, 95.7 minutes on average according to the model's predictions at the same departure times), the model would still save about 11 minutes per trip, because no route is the fastest all day long.
 
 This is an estimate: we don't know how long the route the driver did not take would really have lasted, so we use the prediction of the model for it. The model is also evaluated on the same trips it was trained on.
